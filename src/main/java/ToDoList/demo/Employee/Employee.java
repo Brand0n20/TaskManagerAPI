@@ -1,6 +1,10 @@
 package ToDoList.demo.Employee;
 
+import ToDoList.demo.Task.Task;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // will map this class to database, this one if for hibernate
 @Table  // this one is for the actual table
@@ -18,7 +22,18 @@ public class Employee {
 
     private String jobTitle;
     private String Department;
-    private int taskNumber;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
+    private List<Task> tasks = new ArrayList<>();
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
 
     public Long getId() {
         return id;
@@ -44,7 +59,6 @@ public class Employee {
         return Department;
     }
 
-    public int getTaskNumber() {return taskNumber;}
 
     public void setId(Long id) {
         this.id = id;
@@ -70,9 +84,6 @@ public class Employee {
         Department = department;
     }
 
-    public void setTaskNumber(int taskNumber) {
-        this.taskNumber = taskNumber;
-    }
 
     public Employee(String firstName, String lastName, String email, String jobTitle, String department) {
         this.firstName = firstName;

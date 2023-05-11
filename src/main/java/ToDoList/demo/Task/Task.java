@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "tasks")
 public class Task {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
-    private String name;
+    private String description;
 
     private String assignee;
 
@@ -23,8 +23,8 @@ public class Task {
     public Task() {
     }
 
-    public Task(String name, String assignee, Date dueDate, String department) {
-        this.name = name;
+    public Task(String description, String assignee, Date dueDate, String department) {
+        this.description = description;
         this.assignee = assignee;
         this.dueDate = dueDate;
         this.department = department;
@@ -38,12 +38,12 @@ public class Task {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAssignee() {
@@ -73,7 +73,7 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "name='" + name + '\'' +
+                "description='" + description + '\'' +
                 ", assignee='" + assignee + '\'' +
                 ", dueDate=" + dueDate +
                 ", department='" + department + '\'' +
