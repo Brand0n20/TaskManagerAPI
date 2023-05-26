@@ -14,7 +14,7 @@ public class Task {
 
     private String description;
 
-    private String assignee;
+    private long employeeID;
 
     private Date dueDate;
 
@@ -23,10 +23,9 @@ public class Task {
     public Task() {
     }
 
-    public Task(String description, String assignee, Date dueDate, String department) {
+    public Task(String description, long employeeID, String department) {
         this.description = description;
-        this.assignee = assignee;
-        this.dueDate = dueDate;
+        this.employeeID = employeeID;
         this.department = department;
     }
 
@@ -46,12 +45,12 @@ public class Task {
         this.description = description;
     }
 
-    public String getAssignee() {
-        return assignee;
+    public long getEmployeeID() {
+        return employeeID;
     }
 
-    public void setAssignee(String assignee) {
-        this.assignee = assignee;
+    public void setEmployeeID(long employeeID) {
+        this.employeeID = employeeID;
     }
 
     public Date getDueDate() {
@@ -74,7 +73,7 @@ public class Task {
     public String toString() {
         return "Task{" +
                 "description='" + description + '\'' +
-                ", assignee='" + assignee + '\'' +
+                ", assignee='" + employeeID + '\'' +
                 ", dueDate=" + dueDate +
                 ", department='" + department + '\'' +
                 '}';
