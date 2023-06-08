@@ -63,7 +63,7 @@ public class EmployeeService {
         return savedEmployee;
     }
 
-    public void deleteEmployee(Long employeeId) throws IllegalAccessException {
+    public void deleteEmployee(long employeeId) {
         Employee existingEmployee = employeeRepository.findById(employeeId).orElse(null);
         if (existingEmployee != null) {
             try {

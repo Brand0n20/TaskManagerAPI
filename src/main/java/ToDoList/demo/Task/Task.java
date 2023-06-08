@@ -16,17 +16,26 @@ public class Task {
 
     private long employeeID;
 
-    private Date dueDate;
+    private String dueDate;
 
     private String department;
 
     public Task() {
     }
 
-    public Task(String description, long employeeID, String department) {
+    public Task(String description, long employeeID, String dueDate, String department) {
         this.description = description;
+        this.dueDate = dueDate;
         this.employeeID = employeeID;
         this.department = department;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public String getDueDate() {
+        return dueDate;
     }
 
     public Long getId() {
@@ -52,15 +61,6 @@ public class Task {
     public void setEmployeeID(long employeeID) {
         this.employeeID = employeeID;
     }
-
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public String getDepartment() {
         return department;
     }

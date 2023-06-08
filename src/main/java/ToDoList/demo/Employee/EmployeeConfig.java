@@ -19,13 +19,13 @@ public class EmployeeConfig {
         return args -> {
             Employee brandon = new  Employee("Brandon",
                     "Alfaro",
-                    "brandonalfa@gamil.com",
+                    "brandonalfa@gmail.com",
                     "Software Engineer",
                     "IT");
 
             Employee mark = new Employee("Mark",
                     "Hannah",
-                    "MarkHannah35@gamil.com",
+                    "MarkHannah35@gmail.com",
                     "Product Owner",
                     "IT");
             repository.saveAll(List.of(brandon, mark));

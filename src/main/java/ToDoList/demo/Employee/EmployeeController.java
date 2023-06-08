@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/employees")
+@RequestMapping(value = "/employees")
 public class EmployeeController {
     Logger logger = LogManager.getLogger(EmployeeController.class);
 @Autowired
@@ -34,8 +35,8 @@ public ResponseEntity<Employee> getEmployeeByEmail(@PathVariable String email) {
 public ResponseEntity<Employee> postEmployee(@RequestBody Employee newEmployee) {
     return new ResponseEntity<>(employeeService.saveEmployee(newEmployee), HttpStatus.CREATED);
 }
-@DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> deletePatient(@PathVariable Long employeeId) throws IllegalAccessException {
+@DeleteMapping(value= "/{id}")
+    public ResponseEntity<Void> deletePatient(@PathVariable long employeeId) {
         employeeService.deleteEmployee(employeeId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 }
