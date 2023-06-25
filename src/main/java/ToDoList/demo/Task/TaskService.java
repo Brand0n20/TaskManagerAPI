@@ -61,11 +61,31 @@ public class TaskService {
                     try {
                         task = getTaskById(taskId);
                     } catch (DataAccessException exception) {
-
+                        logger.error(exception.getMessage());
+                        System.out.println("Couldn't find task");
                     }
                 }
             }
             return task;
+    }
+
+    public Task createTask(Task task) {
+        try {
+            taskRepository.save(task);
+        } catch (Exception exception) {
+            logger.error(exception.getMessage());
+            System.out.println("Couldn't save task");
+        }
+        return task;
+    }
+
+    public void deleteTask (Long taskId) {
+        try {
+            taskRepository.deleteById(taskId);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            System.out.println("Couldn't delete task");
+        }
     }
 
 

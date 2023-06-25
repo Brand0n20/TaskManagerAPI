@@ -34,5 +34,15 @@ public class TaskController {
         return new ResponseEntity<>(taskService.getTasksByEmployeeId(id), HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<Task> taskToSave(@RequestBody Task task) {
+        return new ResponseEntity<>(taskService.createTask(task), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable long id) {
+        taskService.deleteTask(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }

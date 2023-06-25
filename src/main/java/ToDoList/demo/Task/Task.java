@@ -23,11 +23,10 @@ public class Task {
     public Task() {
     }
 
-    public Task(String description, long employeeID, String dueDate, String department) {
+    public Task(String description, long employeeID, String dueDate) {
         this.description = description;
         this.dueDate = dueDate;
         this.employeeID = employeeID;
-        this.department = department;
     }
 
     public void setDueDate(String dueDate) {
@@ -61,13 +60,6 @@ public class Task {
     public void setEmployeeID(long employeeID) {
         this.employeeID = employeeID;
     }
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
 
     @Override
     public String toString() {
@@ -75,7 +67,6 @@ public class Task {
                 "description='" + description + '\'' +
                 ", assignee='" + employeeID + '\'' +
                 ", dueDate=" + dueDate +
-                ", department='" + department + '\'' +
                 '}';
     }
 }
