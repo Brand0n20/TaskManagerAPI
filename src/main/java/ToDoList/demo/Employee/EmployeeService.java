@@ -36,10 +36,10 @@ public class EmployeeService {
 
     }
 
-    public Employee getEmployeeByEmail(String email) {
+    public Employee getEmployeeById(Long id) {
         Employee employee;
         try {
-            employee = employeeRepository.findByEmail(email);
+            employee = employeeRepository.findById(id).orElse(null);
         } catch (DataAccessException e) {
             logger.error(e.getMessage());
             throw new RuntimeException();

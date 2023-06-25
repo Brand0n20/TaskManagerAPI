@@ -26,9 +26,9 @@ public ResponseEntity<List<Employee>> getEmployees() {
     return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
 }
 
-@GetMapping(value = "/{email}")
-public ResponseEntity<Employee> getEmployeeByEmail(@PathVariable String email) {
-    return new ResponseEntity<>(employeeService.getEmployeeByEmail(email), HttpStatus.OK);
+@GetMapping(value = "/{id}")
+public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+    return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.OK);
 }
 
 @PostMapping
@@ -36,8 +36,8 @@ public ResponseEntity<Employee> postEmployee(@RequestBody Employee newEmployee) 
     return new ResponseEntity<>(employeeService.saveEmployee(newEmployee), HttpStatus.CREATED);
 }
 @DeleteMapping(value= "/{id}")
-    public ResponseEntity<Void> deletePatient(@PathVariable long employeeId) {
-        employeeService.deleteEmployee(employeeId);
+    public ResponseEntity<Void> deleteEmployee(@PathVariable long id) {
+        employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 }
 
