@@ -5,6 +5,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.rmi.ServerError;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -61,6 +62,22 @@ public class EmployeeService {
             throw new RuntimeException();
         }
         return savedEmployee;
+    }
+
+    public Employee updateEmployee (Employee employee, long id) {
+        Employee existingEmployee =  employeeRepository.findById(id).orElse(null);
+        if (existingEmployee != null) {
+            logger.error("Employee with id " + existingEmployee.getId() + " does not exist.");
+            throw new Error("Employee with id " + existingEmployee.getId() + " does not exist.");
+        } else {
+            try {
+                existingEmployee = employeeRepository.save(employee);
+            } catch (DataAccessException exception) {
+                logger.error(exception.getMessage());
+                throw new RuntimeException();
+            }
+        }
+        return existingEmployee;
     }
 
     public void deleteEmployee(long employeeId) {

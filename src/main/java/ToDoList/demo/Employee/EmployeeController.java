@@ -35,6 +35,11 @@ public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
 public ResponseEntity<Employee> postEmployee(@RequestBody Employee newEmployee) {
     return new ResponseEntity<>(employeeService.saveEmployee(newEmployee), HttpStatus.CREATED);
 }
+
+@PutMapping(value = "/{id}")
+public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable long id) {
+    return new ResponseEntity<>(employeeService.updateEmployee(employee, id), HttpStatus.OK);
+}
 @DeleteMapping(value= "/{id}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable long id) {
         employeeService.deleteEmployee(id);

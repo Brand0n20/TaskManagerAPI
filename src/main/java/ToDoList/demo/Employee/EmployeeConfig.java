@@ -20,12 +20,14 @@ public class EmployeeConfig {
             Employee brandon = new  Employee("Brandon",
                     "Alfaro",
                     "brandonalfa@gmail.com",
+                    "BR@ndoNA12",
                     "Software Engineer",
                     "IT");
 
             Employee mark = new Employee("Mark",
                     "Hannah",
                     "MarkHannah35@gmail.com",
+                    "IRock6",
                     "Product Owner",
                     "IT");
             repository.saveAll(List.of(brandon, mark));

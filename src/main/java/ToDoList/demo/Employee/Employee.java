@@ -2,13 +2,19 @@ package ToDoList.demo.Employee;
 
 import ToDoList.demo.Task.Task;
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
 
 @Entity // will map this class to database, this one if for hibernate
 @Table  // this one is for the actual table
-public class Employee {
+
+public class Employee implements UserDetails {
 
     public Employee() {
     };
@@ -19,6 +25,48 @@ public class Employee {
     private String lastName;
     @Column(unique = true)
     private String email;
+
+    private String password;
+
+    private Role role;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     private String jobTitle;
     private String Department;
@@ -85,10 +133,13 @@ public class Employee {
     }
 
 
-    public Employee(String firstName, String lastName, String email, String jobTitle, String department) {
+
+
+    public Employee(String firstName, String lastName, String email, String password, String jobTitle, String department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.jobTitle = jobTitle;
         this.Department = department;
     }
@@ -98,7 +149,8 @@ public class Employee {
         return "Employee{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email=" + email +
+                ", email=" + email + '\'' +
+                ", password=" + password + '\'' +
                 ", jobTitle='" + jobTitle + '\'' +
                 ", Department='" + Department + '\'' +
                 '}';
