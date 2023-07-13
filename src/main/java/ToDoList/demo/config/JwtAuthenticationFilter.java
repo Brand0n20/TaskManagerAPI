@@ -1,11 +1,15 @@
 package ToDoList.demo.config;
 
+import ToDoList.demo.Employee.EmployeeService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -16,6 +20,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     // by extending this class, it means that the authentication will trigger for every request made
 
     private final JwtService jwtService;    //creating new class in order to manipulate(i.e. extract email) the jwt
+
+    private EmployeeService employeeService;
+
     @Override
     protected void doFilterInternal(
                                     @NonNull HttpServletRequest request,
@@ -35,5 +42,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // extracting user email from JWT token
         userEmail = jwtService.extractUsername(jwt);
+
+        // checking if username isn't empty and if user isn't connected yet
+        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            // check if we have the user within the database
+            UserDetails userDetails = this.employeeService
+        }
     }
 }
